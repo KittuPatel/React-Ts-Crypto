@@ -23,14 +23,34 @@ interface Stats {
   }
 }
 
+interface CryptoCoins {
+  status: string,
+  data: {
+    coins: [
+      {
+        id: number,
+        rank:number,
+        name: string,
+        iconUrl: string,
+        price:number,
+        marketCap:number,
+        change:number,
+      },
+    ]
+  }
+}
+
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getCryptoStats: builder.query<Stats, void>({
       query: () => createRequest('/stats')
+    }),
+    getCryptoCoins: builder.query<CryptoCoins, void>({
+      query: () => createRequest('/coins')
     })
   })
 })
 
-export const { useGetCryptoStatsQuery } = cryptoApi;
+export const { useGetCryptoStatsQuery, useGetCryptoCoinsQuery } = cryptoApi;

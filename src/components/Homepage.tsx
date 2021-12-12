@@ -18,7 +18,7 @@ const Homepage = () => {
     } 
 
     return (
-        <ApiProvider api={cryptoApi}>
+        // <ApiProvider api={cryptoApi}>
             <div className='main-box'>
                 {console.log(stats)}
                 <Title level={2} className='heading'>Global Crypto Stats</Title>
@@ -40,7 +40,7 @@ const Homepage = () => {
                 </div>
                 {/* <News simplified /> */}
             </div>
-        </ApiProvider>
+        // </ApiProvider>
     )
 }
 
