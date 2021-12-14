@@ -33,9 +33,9 @@ const Cryptocurrencies = (props: CryptocurrenciesProps) => {
 
     return (
         <>
-            <div className="search-crypto">
+            { !props.simplified && (<div className="search-crypto">
                 <Input placeholder='Search Crypto' onChange={(e) => setSearchTerm(e.target.value)}/>
-            </div>
+            </div>)}
             <Row gutter={[10, 10]} className='crypto-card-container'>
                 {/* {console.log(data?.data?.coins)} */}
                 {cryptos?.map((currency) => (

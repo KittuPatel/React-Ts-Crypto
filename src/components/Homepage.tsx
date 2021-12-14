@@ -38,7 +38,7 @@ const Homepage = () => {
                     <Title level={2} className='home-title'>Latest Crypto News</Title>
                     <Title level={3} className='show-more'><Link to='/news'>Show More</Link></Title>
                 </div>
-                {/* <News simplified /> */}
+                <News simplified={true} />
             </div>
         // </ApiProvider>
     )
