@@ -9,7 +9,8 @@ const { Text } = Typography;
 const { Panel } = Collapse;
 
 const columns = [
-    { title: 'Exchanges', dataIndex: 'name', key: 'name' },
+    { title: 'Logo', dataIndex: 'iconUrl', key: 'iconUrl' },
+    { title: 'Exchange Name', dataIndex: 'name', key: 'name' },
     { title: '24h Trade Volume', dataIndex: 'volume', key: 'volume' },
     { title: 'Markets', dataIndex: 'numberOfMarkets', key: 'numberOfMarkets' },
     { title: 'Change', dataIndex: 'marketShare', key: 'marketShare' },
@@ -24,13 +25,13 @@ const Exchanges = () => {
 
     exchangesList.map((element:any) => (
         exchanges.push({
-            id: element.id,
+            key: element.id,
             name: element.name,
             description: element.description,
-            iconUrl: element.iconUrl,
-            volume: element.volume,
-            numberOfMarkets: element.numberOfMarkets,
-            marketShare: element.marketShare,
+            iconUrl: <img src={element.iconUrl} width={30} alt="logo" /> ,
+            volume: millify(element.volume),
+            numberOfMarkets: millify(element.numberOfMarkets),
+            marketShare: millify(element.marketShare),
             rank: element.rank
         })
     )) 
@@ -38,11 +39,12 @@ const Exchanges = () => {
   return (
     <>
         <Table
-            columns={columns}
+              columns={columns}
               expandable={{
-                expandedRowRender: record => ReactHtmlParser(record.description || ''),
-                // rowExpandable: ,
-                expandRowByClick: true
+                 expandedRowKeys: exchanges.id,
+                 expandedRowRender: record => ReactHtmlParser(record.description || ''),
+                 rowExpandable: record => record.name !== "Not Expandable",
+                 expandRowByClick: true
              }}
             dataSource={exchanges}
         />
