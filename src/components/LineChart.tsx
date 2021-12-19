@@ -42,20 +42,20 @@ const LineChart = ({coinHistory, coinName, currentPrice}: LineChartProps) => {
         ]
     }
     
-    const options = {
-        scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        display: true,
-                        beginAtZero: true,
-                        padding: 5,
-                        precision: 0,
-                    },
-                }
-            ]
-        }
-    }
+    // const options = {
+    //     scales: {
+    //         yAxes: [
+    //             {
+    //                 ticks: {
+    //                     display: true,
+    //                     beginAtZero: true,
+    //                     padding: 5,
+    //                     precision: 0,
+    //                 },
+    //             }
+    //         ]
+    //     }
+    // }
 
     return (
         <>

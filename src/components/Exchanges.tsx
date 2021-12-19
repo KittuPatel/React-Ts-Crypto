@@ -1,12 +1,12 @@
 import React from 'react';
 import millify from 'millify';
-import { Collapse, Row, Col, Typography, Avatar, Space, Table } from 'antd';
+import { Table } from 'antd';
 import ReactHtmlParser from 'react-html-parser'
 import { useGetCryptoExchangesQuery } from '../services/cryptoApi';
 import Loader from './Loader';
 
-const { Text } = Typography;
-const { Panel } = Collapse;
+// const { Text } = Typography;
+// const { Panel } = Collapse;
 
 const columns = [
     { title: 'Logo', dataIndex: 'iconUrl', key: 'iconUrl' },

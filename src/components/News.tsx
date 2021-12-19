@@ -20,7 +20,7 @@ const News = (props: NewsProps) => {
 
     const { data: Cryptocurrencies } = useGetCryptoCoinsQuery(100)
 
-    const { data, isFetching } = useGetCryptoNewsQuery({
+    const { data } = useGetCryptoNewsQuery({
         newsCategory,
         count: props.simplified ? 6 : 30
     })
@@ -54,7 +54,7 @@ const News = (props: NewsProps) => {
                                 <Title className='news-title' level={4}>
                                     {news.name}
                                 </Title>
-                                <img style={{maxHeight: '80px', maxWidth:'120px', borderRadius: '50%'}} src={news?.image?.thumbnail?.contentUrl || demoImage  } alt="Crypto Image " />
+                                <img style={{maxHeight: '80px', maxWidth:'120px', borderRadius: '50%'}} src={news?.image?.thumbnail?.contentUrl || demoImage } alt='news' />
                             </div>
                             <p>
                                 {news.description > 100 

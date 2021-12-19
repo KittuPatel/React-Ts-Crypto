@@ -3,9 +3,9 @@ import millify from 'millify'
 import { Card, Row, Col, Input } from 'antd'
 import { Link } from 'react-router-dom'
 
-import { useGetCryptoCoinsQuery, cryptoApi } from '../services/cryptoApi';
-import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
-import { Axios } from 'axios';
+import { useGetCryptoCoinsQuery } from '../services/cryptoApi';
+// import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
+// import { Axios } from 'axios';
 import Loader from './Loader';
 
 type CryptocurrenciesProps = {
@@ -14,7 +14,7 @@ type CryptocurrenciesProps = {
 
 const Cryptocurrencies = (props: CryptocurrenciesProps) => {
     const count:number = props.simplified ? 10 : 50 
-    const { data, isFetching, isSuccess } = useGetCryptoCoinsQuery(count)
+    const { data, isFetching } = useGetCryptoCoinsQuery(count)
     const cryptosData = data?.data
     const coins = cryptosData?.coins
     const [cryptos, setCryptos] = useState(coins)
@@ -26,7 +26,7 @@ const Cryptocurrencies = (props: CryptocurrenciesProps) => {
     
         filteredData ? setCryptos(filteredData) : <Loader />
 
-    }, [cryptosData, searchTerm])
+    }, [cryptosData, searchTerm, coins])
     
     if (isFetching) {
         return <Loader />   
@@ -44,7 +44,7 @@ const Cryptocurrencies = (props: CryptocurrenciesProps) => {
                         <Link to={`/crypto/${currency.id}`}>
                             <Card
                                 title={`${currency.rank}. ${currency.name}`}
-                                extra={<img src={currency.iconUrl} className='crypto-image' />}
+                                extra={<img src={currency.iconUrl} className='crypto-image' alt='img' />}
                                 hoverable>
                                 <p>Price: ${millify(currency.price)}</p>
                                 <p>Market Cap: {millify(currency.marketCap)}</p>
