@@ -29,7 +29,7 @@ const App = () => {
           </Layout>
           <div className="footer">
             <Typography.Title level={5} style={{ color: 'white', textAlign: 'center'}}>
-              Cryptomarket <br />
+              Cryptomarket - Made by Krishna Sai Mangalarapu<br />
               All rights reserved.
             </Typography.Title>
             <Space>

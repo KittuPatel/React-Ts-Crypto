@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useGetCryptoCoinsQuery, cryptoApi } from '../services/cryptoApi';
 import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
 import { Axios } from 'axios';
+import Loader from './Loader';
 
 type CryptocurrenciesProps = {
     simplified: boolean
@@ -23,12 +24,12 @@ const Cryptocurrencies = (props: CryptocurrenciesProps) => {
 
         const filteredData:any = coins?.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLowerCase()))
     
-        filteredData ? setCryptos(filteredData) : <p>loading</p>
+        filteredData ? setCryptos(filteredData) : <Loader />
 
     }, [cryptosData, searchTerm])
     
     if (isFetching) {
-        return <p>Loading...</p>
+        return <Loader />   
     } 
 
     return (

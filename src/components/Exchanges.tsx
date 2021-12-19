@@ -1,11 +1,55 @@
-import React from 'react'
+import React from 'react';
+import millify from 'millify';
+import { Collapse, Row, Col, Typography, Avatar } from 'antd';
+import ReactHtmlParser from 'react-html-parser'
+import { useGetCryptoExchangesQuery } from '../services/cryptoApi';
+import Loader from './Loader';
+
+const { Text } = Typography;
+const { Panel } = Collapse;
 
 const Exchanges = () => {
-    return (
-        <div>
-            Exchanges
-        </div>
-    )
-}
+  const { data, isFetching } = useGetCryptoExchangesQuery('exchanges');
+  const exchangesList = data?.data?.exchanges;
 
-export default Exchanges
+  if (isFetching) return <Loader />;
+
+  return (
+    <>
+      <Row>
+        <Col span={6}>Exchanges</Col>
+        <Col span={6}>24h Trade Volume</Col>
+        <Col span={6}>Markets</Col>
+        <Col span={6}>Change</Col>
+      </Row>
+      <Row>
+        {exchangesList.map((exchange:any) => (
+          <Col span={24}>
+            <Collapse>
+              <Panel
+                key={exchange.id}
+                showArrow={false}
+                header={(
+                  <Row key={exchange.id}>
+                    <Col span={6}>
+                      <Text><strong>{exchange.rank-1}.</strong></Text>
+                      <Avatar className="exchange-image" src={exchange.iconUrl} />
+                      <Text><strong>{exchange.name}</strong></Text>
+                    </Col>
+                    <Col span={6}>${millify(exchange.volume)}</Col>
+                    <Col span={6}>{millify(exchange.numberOfMarkets)}</Col>
+                    <Col span={6}>{millify(exchange.marketShare)}%</Col>
+                  </Row>
+                  )}
+              >
+                {ReactHtmlParser(exchange.description || '')}
+              </Panel>
+            </Collapse>
+          </Col>
+        ))}
+      </Row>
+    </>
+  );
+};
+
+export default Exchanges;

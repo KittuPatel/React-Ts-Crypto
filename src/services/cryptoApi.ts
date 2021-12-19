@@ -31,7 +31,7 @@ interface CryptoCoins {
 
 const cryptoHeaders = {
   'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
-  'x-rapidapi-key': '6c9bf68697mshee44ceb135a5a10p1f0a94jsn3a8b0d8e8567'
+  'x-rapidapi-key': process.env.REACT_APP_API_KEY
 }
 
 const baseUrl = "https://coinranking1.p.rapidapi.com"
@@ -58,7 +58,10 @@ export const cryptoApi = createApi({
     getCryptoHistory: builder.query({
       query: ({coinId, timePeriod}) => createRequest(`/coin/${coinId}/history/${timePeriod}`)
     }),
+    getCryptoExchanges: builder.query({
+      query: (url) => createRequest(`/${url}`)
+    }),
   })
 })
 
-export const { useGetCryptoStatsQuery, useGetCryptoCoinsQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } = cryptoApi;
+export const { useGetCryptoStatsQuery, useGetCryptoCoinsQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery, useGetCryptoExchangesQuery } = cryptoApi;

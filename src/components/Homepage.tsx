@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useGetCryptoStatsQuery, cryptoApi } from '../services/cryptoApi'
 import { ApiProvider } from '@reduxjs/toolkit/query/react'
 import { Cryptocurrencies, News } from '../components'
+import Loader from './Loader'
 const { Title } = Typography;
 
 const Homepage = () => {
@@ -14,7 +15,7 @@ const Homepage = () => {
     const stats = data?.data
 
     if (isFetching) {
-        return <p>Loading...</p>
+        return <Loader />
     } 
     
     return (
